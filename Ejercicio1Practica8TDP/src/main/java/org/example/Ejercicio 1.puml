@@ -1,0 +1,33 @@
+@startuml
+
+class JugadorGuerraAR {
+    - fichas : int
+    - nombre : String
+    - random : Random {static}
+    + JugadorGuerraAR(nombre : String)
+    + lanzarDado() : int
+    + actualizarFichas(esGanador : boolean) : void
+    + getFichas() : int
+    + getNombre() : String
+}
+
+class JuegoDeDadosAR {
+    + main(args : String[]) : void
+}
+
+JuegoDeDadosAR .right.> JugadorGuerraAR : "crea"
+
+note right of JuegoDeDadosAR
+  Solicita los nombres de los jugadores,
+  crea instancias de JugadorGuerraAR,
+  y maneja la lógica del juego.
+end note
+
+note left of JugadorGuerraAR
+  Representa a cada jugador, gestiona
+  sus fichas, su nombre, y la acción de
+  lanzar un dado.
+end note
+
+@enduml
+

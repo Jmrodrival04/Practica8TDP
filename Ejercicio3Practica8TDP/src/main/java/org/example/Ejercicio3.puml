@@ -1,0 +1,28 @@
+@startuml
+
+class BatallaNaval {
+}
+
+class Cuadricula {
+    - TAMANO: int
+    - tablero: int[][]
+    - rand: Random
+    - condicionMarina: String
+
+    + Cuadricula()
+    + colocarBarcosAleatoriamente(): void
+    + realizarAtaque(x: int, y: int): boolean
+    + imprimirTablero(revelar: boolean): void
+    + verificarFinJuego(): boolean
+    + actualizarCondicionMarina(): void
+}
+
+class CuadriculaIA extends Cuadricula {
+    + actualizarCondicionMarina(): void
+    + realizarAtaqueIA(objetivo: Cuadricula): void
+}
+
+BatallaNaval .right.> Cuadricula : uses
+BatallaNaval .down.> CuadriculaIA : uses
+
+@enduml

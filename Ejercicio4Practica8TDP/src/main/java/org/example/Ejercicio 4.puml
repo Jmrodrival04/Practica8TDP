@@ -1,0 +1,36 @@
+@startuml
+class Cuadricula {
+    - TAMANO: int
+    - AGUA: char
+    - FALLO: char
+    - GOLPE: char
+    - tablero: char[][]
+    - ataquesRealizados: boolean[][]
+
+    + Cuadricula()
+    + inicializarTablero(): void
+    + colocarBarcosAleatoriamente(): void
+    + colocarBarco(longitud: int): void
+    + puedeColocarBarco(x: int, y: int, longitud: int, horizontal: boolean): boolean
+    + realizarAtaque(x: int, y: int): boolean
+    + imprimirTablero(mostrarBarcos: boolean): void
+    + esAtaqueRealizado(x: int, y: int): boolean
+    + quedanBarcos(): boolean
+}
+
+class GuerraDeBarcosAvanzada {
+    - cuadriculaJugador: Cuadricula
+    - cuadriculaIA: Cuadricula
+    - scanner: Scanner
+    - nombreJugador: String
+
+    + GuerraDeBarcosAvanzada()
+    + solicitarNombreUsuario(): void
+    + turnoJugador(): void
+    + turnoIA(): void
+    + ejecutar(): void
+    + main(args: String[]): void
+}
+
+GuerraDeBarcosAvanzada "1" -- "1" Cuadricula : contains >
+@enduml

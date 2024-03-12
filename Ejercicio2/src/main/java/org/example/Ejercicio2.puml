@@ -1,0 +1,52 @@
+@startuml
+
+class ClienteECommerce {
+    - String nombre
+    - int numeroCliente
+    - List<Obra> historialCompras
+    - List<Obra> recomendaciones
+    + analizarPreferencias(): void
+    + generarRecomendaciones(preferencia: String): void
+    + agregarCompra(obra: Obra): void
+    + mostrarRecomendaciones(): void
+}
+
+abstract class Obra {
+    - String titulo
+    - String autor
+    - double precio
+    + mostrarDetalles(): void
+}
+
+class Libro {
+    - String genero
+    - int numPaginas
+    + mostrarDetallesLibro(): void
+}
+
+class Video {
+    - int duracion
+    - String formato
+    + mostrarDetallesVideo(): void
+}
+
+class Pedido {
+    - ClienteECommerce cliente
+    - List<Obra> obrasCompradas
+    + agregarObra(obra: Obra): void
+    + mostrarPedido(): void
+}
+
+class BaseDeDatosObras {
+    {static} + List<Obra> obrasDisponibles
+    {static} + mostrarObrasDisponibles(): void
+}
+
+Obra <|-- Libro
+Obra <|-- Video
+ClienteECommerce --> "many" Obra : historialCompras
+ClienteECommerce --> "many" Obra : recomendaciones
+Pedido --> ClienteECommerce : cliente
+Pedido --> "many" Obra : obrasCompradas
+
+@enduml
